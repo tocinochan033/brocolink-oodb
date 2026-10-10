@@ -43,6 +43,16 @@ if ($method === 'GET' && $uri === '/health-check') {
         'message' => 'Todo bien'
     ]);
 
+} else if ($method === 'PUT' && $uri === '/moods/' . $body['MoodId']) {
+    require_once("models/moodsput.php");
+    http_response_code(200);
+
+    echo json_encode([
+        'success' => true,
+        'data' => $newData,
+        'message' => 'Todo bien'
+    ]);
+
 } else {
 
     http_response_code(404);
