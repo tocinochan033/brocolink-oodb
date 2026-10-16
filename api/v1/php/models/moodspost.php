@@ -18,6 +18,6 @@ try {
     };
 }
 catch (PDOException $ex) {
-    $MoodId = "Hubo un error!!!!!!!!!!!!";
+    $MoodId = 'Error: ' . $ex->getMessage();
 };
 ?>

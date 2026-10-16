@@ -5,6 +5,7 @@ header('Access-Control-Allow-Origin: *');
 $method = $_SERVER['REQUEST_METHOD'];
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$resourceId = explode('/', $uri)[2] ?? null;
 
 $rawBody = file_get_contents('php://input');
 $body = json_decode($rawBody, true);
@@ -30,7 +31,12 @@ if ($method === 'GET' && $uri === '/health-check') {
     echo json_encode([
         'success' => true,
         'data' => $Elements,
-        'message' => 'Todo bien'
+        'message' => 'Todo bien',
+        'debug' => [
+            'method' => $_SERVER['REQUEST_METHOD'],
+            'uri' => $_SERVER['REQUEST_URI'],
+            'body' => $rawBody
+        ]
     ]);
 
 } else if ($method === 'POST' && $uri === '/moods') {
@@ -43,7 +49,7 @@ if ($method === 'GET' && $uri === '/health-check') {
         'message' => 'Todo bien'
     ]);
 
-} else if ($method === 'PUT' && $uri === '/moods/' . $body['MoodId']) {
+} else if ($method === 'PUT' && $uri === '/moods/' . $resourceId) {
     require_once("models/moodsput.php");
     http_response_code(200);
 
