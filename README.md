@@ -6,7 +6,7 @@ La práctica traslada una parte del flujo de facturación de Swifty a un modelo 
 
 El catálogo se representa con `Articulo` y sus subclases `Producto` y `Servicio`; `Venta` mantiene una colección persistente de `DetalleVenta`. La raíz de Durus administra el catálogo y las ventas para que el grafo se guarde mediante alcanzabilidad. También se añadieron operaciones CRUD, consultas que recorren ese grafo y una demostración de transacciones confirmadas y revertidas.
 
-La práctica usa el esquema de Swifty como referencia, pero no se conecta a MySQL ni migra sus registros: los datos de la demostración se crean en Durus. Se trabajó con `products`, `sales` y `sale_details`; los datos de cliente se conservan como valores (`client_id` y `client_type`) porque las tablas de clientes no están incluidas en el alcance. Para que la Parte I y la Parte II sean coherentes, el modelo y diagrama de la documentación formal deben describir este dominio de facturación.
+Se trabajó con `products`, `sales` y `sale_details`.
 
 ## Correspondencia relacional y de objetos
 
@@ -43,8 +43,6 @@ classDiagram
 6. **Transacciones:** `main.py` confirma una venta con `commit()` y despues crea otra que revierte con `abort()`. La prueba automatizada confirma que la segunda no queda en la raiz.
 7. **Navegacion del grafo:** `ventas_de_cliente`, `ventas_con_articulo` y `resumen_venta` recorren referencias; cada funcion incluye su equivalente SQL como comentario.
 8. **CRUD y cascada:** `SwiftyRoot` ofrece alta, consulta, modificacion y baja para articulos, ventas y partidas. No permite borrar un articulo usado; `baja_venta` elimina primero sus partidas compuestas.
-
-Las modificaciones estructurales de partidas usan `PersistentList`, que notifica a Durus. Las colecciones nativas mutables no deben sustituirla sin invocar `_p_note_change()`, porque Durus podria no detectar esos cambios.
 
 ## Instalacion y ejecucion
 
