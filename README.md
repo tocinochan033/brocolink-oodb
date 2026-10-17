@@ -4,7 +4,7 @@
 
 Se eligieron el catálogo de productos y servicios, las ventas y sus detalles porque permiten mostrar una jerarquía de tipos y una relación de composición: una venta contiene sus partidas, y cada partida apunta directamente al artículo correspondiente.
 
-El catálogo se representa con `Articulo` y sus subclases `Producto` y `Servicio`; `Venta` mantiene una colección persistente de `DetalleVenta`. La raíz de Durus administra el catálogo y las ventas para que el grafo se guarde mediante alcanzabilidad. También se añadieron operaciones CRUD, consultas que recorren ese grafo y una demostración de transacciones confirmadas y revertidas.
+El catálogo se representa con `Articulo` y sus subclases `Producto` y `Servicio`; `Venta` mantiene una colección persistente de `DetalleVenta`. También se añadieron operaciones CRUD, consultas que recorren ese grafo y una demostración de transacciones confirmadas y revertidas.
 
 Se trabajó con `products`, `sales` y `sale_details`.
 
