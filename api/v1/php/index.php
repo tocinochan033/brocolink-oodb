@@ -88,6 +88,4 @@ if ($method === 'GET' && $uri === '/health-check') {
         ]
     ]);
 }
-
-addRoutes($request);
 ?>

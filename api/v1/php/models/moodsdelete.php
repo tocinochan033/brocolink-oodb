@@ -11,7 +11,7 @@ try {
     if ($SQL_Sentence->rowCount() != 0) {
         $newData = "BORRADO";
     } else {
-        $newData = 'Error: Cannot update record';
+        $newData = 'Error: Cannot delete record';
     };
 }
 catch (PDOException $ex) {
