@@ -1,6 +1,5 @@
 <?php
-header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *');
+require_once("config/headers.php");
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -35,7 +34,7 @@ if ($method === 'GET' && $uri === '/health-check') {
         'debug' => [
             'method' => $_SERVER['REQUEST_METHOD'],
             'uri' => $_SERVER['REQUEST_URI'],
-            'body' => $rawBody
+            'body' => $body
         ]
     ]);
 
@@ -46,11 +45,26 @@ if ($method === 'GET' && $uri === '/health-check') {
     echo json_encode([
         'success' => true,
         'data' => $MoodId,
-        'message' => 'Todo bien'
+        'message' => 'Todo bien',
+        'debug' => [
+            'method' => $_SERVER['REQUEST_METHOD'],
+            'uri' => $_SERVER['REQUEST_URI'],
+            'body' => $body
+        ]
     ]);
 
 } else if ($method === 'PUT' && $uri === '/moods/' . $resourceId) {
     require_once("models/moodsput.php");
+    http_response_code(200);
+
+    echo json_encode([
+        'success' => true,
+        'data' => $newData,
+        'message' => 'Todo bien'
+    ]);
+
+} else if ($method === 'DELETE' && $uri === '/moods/' . $resourceId) {
+    require_once("models/moodsdelete.php");
     http_response_code(200);
 
     echo json_encode([
@@ -74,4 +88,6 @@ if ($method === 'GET' && $uri === '/health-check') {
         ]
     ]);
 }
+
+addRoutes($request);
 ?>
