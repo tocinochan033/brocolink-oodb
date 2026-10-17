@@ -2,7 +2,7 @@
 
 ## Resumen de la actividad
 
-La práctica traslada una parte del flujo de facturación de Swifty a un modelo de objetos persistentes. Se eligieron el catálogo de productos y servicios, las ventas y sus detalles porque permiten mostrar una jerarquía de tipos y una relación de composición: una venta contiene sus partidas, y cada partida apunta directamente al artículo correspondiente.
+Se eligieron el catálogo de productos y servicios, las ventas y sus detalles porque permiten mostrar una jerarquía de tipos y una relación de composición: una venta contiene sus partidas, y cada partida apunta directamente al artículo correspondiente.
 
 El catálogo se representa con `Articulo` y sus subclases `Producto` y `Servicio`; `Venta` mantiene una colección persistente de `DetalleVenta`. La raíz de Durus administra el catálogo y las ventas para que el grafo se guarde mediante alcanzabilidad. También se añadieron operaciones CRUD, consultas que recorren ese grafo y una demostración de transacciones confirmadas y revertidas.
 
